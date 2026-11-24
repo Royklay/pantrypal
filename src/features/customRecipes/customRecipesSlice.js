@@ -25,3 +25,11 @@ const customRecipesSlice = createSlice({
     },
   },
 });
+
+export const {
+  addCustomRecipe,
+  editCustomRecipe,
+  deleteCustomRecipe,
+} = customRecipesSlice.actions;
+
+export default customRecipesSlice.reducer;
