@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -11,26 +11,46 @@ import PlannerPage from "./pages/PlannerPage";
 import ShoppingListPage from "./pages/ShoppingListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
-import "./styles/global.css";
-
 function App() {
   return (
-    <BrowserRouter>
+    <div className="flex min-h-screen flex-col">
+
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/recipes" element={<RecipePage />} />
-        <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/planner" element={<PlannerPage />} />
-        <Route path="/shopping-list" element={<ShoppingListPage />} />
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8">
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+        <Routes>
+
+          <Route path="/" element={<HomePage />} />
+
+          <Route path="/recipes" element={<RecipePage />} />
+
+          <Route
+            path="/recipes/:id"
+            element={<RecipeDetailsPage />}
+          />
+
+          <Route path="/favorites" element={<FavoritesPage />} />
+
+          <Route path="/planner" element={<PlannerPage />} />
+
+          <Route path="/shopping" element={<ShoppingListPage />} />
+
+          {/* Alternative shopping list URL */}
+          <Route
+            path="/shopping-list"
+            element={<ShoppingListPage />}
+          />
+
+          <Route path="*" element={<NotFoundPage />} />
+
+        </Routes>
+
+      </main>
 
       <Footer />
-    </BrowserRouter>
+
+    </div>
   );
 }
 
