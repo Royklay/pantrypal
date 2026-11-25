@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import RecipePage from "./pages/RecipePage";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
-import FavoritesPage from "./pages/FavoritesPage";
 import PlannerPage from "./pages/PlannerPage";
 import ShoppingListPage from "./pages/ShoppingListPage";
 
