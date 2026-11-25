@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -15,6 +15,11 @@ function ShoppingListPage() {
 
   // Get shopping items from Redux
   const items = useSelector((state) => state.shopping.items);
+
+  // Save shopping items whenever they change
+  useEffect(() => {
+    localStorage.setItem("shoppingItems", JSON.stringify(items));
+  }, [items]);
 
   // Form values
   const [name, setName] = useState("");
@@ -49,7 +54,7 @@ function ShoppingListPage() {
     setError("");
 
     if (editingId) {
-      // Preserve the item's bought status when editing
+      // Preserve bought status when editing
       dispatch(
         editItem({
           id: editingId,
@@ -62,7 +67,7 @@ function ShoppingListPage() {
 
       setEditingId(null);
     } else {
-      // Add a new shopping item
+      // Add a new item
       dispatch(
         addItem({
           id: crypto.randomUUID(),
