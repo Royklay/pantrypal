@@ -256,3 +256,5 @@ function CustomRecipesPage() {
     </section>
   );
 }
+
+export default CustomRecipesPage;
