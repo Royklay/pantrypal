@@ -63,3 +63,10 @@ export async function getRecipeById(id) {
 
   return data.meals?.[0] || null;
 }
+
+// Get featured recipes for the HomePage
+export async function getFeaturedRecipes() {
+  const recipes = await getRecipesByCategory("Chicken");
+
+  return recipes.slice(0, 6);
+}
