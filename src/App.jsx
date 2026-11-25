@@ -30,8 +30,6 @@ function App() {
             element={<RecipeDetailsPage />}
           />
 
-          <Route path="/favorites" element={<FavoritesPage />} />
-
           <Route path="/planner" element={<PlannerPage />} />
 
           <Route path="/shopping" element={<ShoppingListPage />} />
