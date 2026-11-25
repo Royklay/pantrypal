@@ -76,3 +76,68 @@ function RecipeDetailsPage() {
     setAddedMessage("Ingredients added to your shopping list!");
     setTimeout(() => setAddedMessage(""), 3000);
   }
+
+  return (
+    <div className="mx-auto max-w-4xl">
+      <h1 className="mb-6 text-3xl font-bold text-green-900">
+        {recipe.strMeal}
+      </h1>
+
+      <img
+        src={recipe.strMealThumb}
+        alt={recipe.strMeal}
+        className="mb-8 h-72 w-full rounded-2xl object-cover md:h-96"
+      />
+
+      <div className="mb-6 flex flex-wrap gap-3">
+        <button
+          onClick={() =>
+            isFavorite
+              ? dispatch(removeFavorite(recipe.idMeal))
+              : dispatch(addFavorite(recipe))
+          }
+          className="rounded-xl bg-green-700 px-5 py-3 text-white hover:bg-green-800"
+        >
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        </button>
+
+        <button
+          onClick={addIngredientsToShoppingList}
+          className="rounded-xl border border-green-700 px-5 py-3 text-green-800 hover:bg-green-50"
+        >
+          Add Ingredients to Shopping List
+        </button>
+      </div>
+
+      {addedMessage && (
+        <p className="mb-6 rounded-xl bg-green-100 px-4 py-3 text-sm font-medium text-green-900">
+          {addedMessage}
+        </p>
+      )}
+
+      <div className="mb-8 rounded-2xl bg-white p-6 shadow-sm">
+        <h2 className="mb-4 text-2xl font-bold text-green-900">Ingredients</h2>
+        <ul className="space-y-3">
+          {ingredients.map((ingredient, index) => (
+            <li
+              key={index}
+              className="flex items-center justify-between gap-4 border-b border-green-100 pb-2"
+            >
+              <span>{ingredient.name}</span>
+              <span className="text-gray-500">{ingredient.quantity}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="rounded-2xl bg-white p-6 shadow-sm">
+        <h2 className="mb-4 text-2xl font-bold text-green-900">
+          Instructions
+        </h2>
+        <p className="whitespace-pre-line leading-8 text-gray-700">
+          {recipe.strInstructions}
+        </p>
+      </div>
+    </div>
+  );
+}
