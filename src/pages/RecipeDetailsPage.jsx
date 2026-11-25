@@ -15,3 +15,20 @@ function RecipeDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [addedMessage, setAddedMessage] = useState("");
+
+  useEffect(() => {
+    async function loadRecipe() {
+      setLoading(true);
+      setError("");
+      try {
+        const data = await getRecipeById(id);
+        setRecipe(data);
+      } catch {
+        setError("Unable to load recipe.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadRecipe();
+  }, [id]);
