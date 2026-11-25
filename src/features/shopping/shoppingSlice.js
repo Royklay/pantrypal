@@ -1,9 +1,11 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-// Initial shopping list state
+// Load saved items from localStorage
+const savedItems = localStorage.getItem("shoppingItems");
+
 const initialState = {
-  items: [],
+  items: savedItems ? JSON.parse(savedItems) : [],
 };
 
 const shoppingSlice = createSlice({
@@ -56,7 +58,7 @@ const shoppingSlice = createSlice({
   },
 });
 
-// Export actions for use in React components
+// Export actions
 export const {
   addItem,
   editItem,
@@ -65,5 +67,5 @@ export const {
   clearBought,
 } = shoppingSlice.actions;
 
-// Export reducer for the Redux store
+// Export reducer
 export default shoppingSlice.reducer;
