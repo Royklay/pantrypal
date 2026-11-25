@@ -1,76 +1,36 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
+import HomePage from "./pages/HomePage";
 import RecipePage from "./pages/RecipePage";
+import RecipeDetailsPage from "./pages/RecipeDetailsPage";
+import FavoritesPage from "./pages/FavoritesPage";
+import PlannerPage from "./pages/PlannerPage";
+import ShoppingListPage from "./pages/ShoppingListPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
-// Temporary pages until the other members finish their features
-function PlaceholderPage({ title }) {
-  return (
-    <div className="rounded-2xl bg-white p-10 text-center shadow-sm">
-      <h1 className="text-3xl font-bold text-green-800">
-        {title}
-      </h1>
-
-      <p className="mt-3 text-gray-500">
-        This section is currently being developed.
-      </p>
-    </div>
-  );
-}
+import "./styles/global.css";
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col">
-
+    <BrowserRouter>
       <Navbar />
 
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipes" element={<RecipePage />} />
+        <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/planner" element={<PlannerPage />} />
+        <Route path="/shopping-list" element={<ShoppingListPage />} />
 
-        <Routes>
-
-          <Route
-            path="/"
-            element={<PlaceholderPage title="Welcome to PantryPal" />}
-          />
-
-          <Route
-            path="/recipes"
-            element={<RecipePage />}
-          />
-
-          <Route
-            path="/favorites"
-            element={<PlaceholderPage title="My Favorites" />}
-          />
-
-          <Route
-            path="/planner"
-            element={<PlaceholderPage title="Weekly Meal Planner" />}
-          />
-
-          <Route
-            path="/shopping"
-            element={<PlaceholderPage title="Shopping List" />}
-          />
-
-          <Route
-            path="/my-recipes"
-            element={<PlaceholderPage title="My Recipes" />}
-          />
-
-          <Route
-            path="*"
-            element={<PlaceholderPage title="Page Not Found" />}
-          />
-
-        </Routes>
-
-      </main>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
 
       <Footer />
-
-    </div>
+    </BrowserRouter>
   );
 }
 
