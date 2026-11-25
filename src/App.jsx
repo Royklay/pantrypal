@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 
 import HomePage from "./pages/HomePage";
 import RecipePage from "./pages/RecipePage";
-import { getFeaturedRecipes } from "../features/recipes/recipeService";
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import PlannerPage from "./pages/PlannerPage";
 import ShoppingListPage from "./pages/ShoppingListPage";
