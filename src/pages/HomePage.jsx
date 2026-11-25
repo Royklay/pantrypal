@@ -62,11 +62,7 @@ function HomePage() {
 
           <div>
 
-            {/* IMAGE PLACEHOLDER:
-                Replace this image URL with your team's chosen hero image.
-                You can also use an image stored in public/images.
-            */}
-
+            
             <img
               src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=80"
               alt="Fresh healthy meals"
