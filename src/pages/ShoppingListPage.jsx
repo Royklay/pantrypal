@@ -36,7 +36,12 @@ function ShoppingListPage() {
       return;
     }
 
-    if (!quantity.trim() || Number(quantity) <= 0) {
+    // Validate quantity
+    if (
+      !quantity.trim() ||
+      !Number.isFinite(Number(quantity)) ||
+      Number(quantity) <= 0
+    ) {
       setError("Please enter a valid quantity.");
       return;
     }
@@ -44,18 +49,20 @@ function ShoppingListPage() {
     setError("");
 
     if (editingId) {
+      // Preserve the item's bought status when editing
       dispatch(
         editItem({
           id: editingId,
           name: name.trim(),
           quantity,
           category,
-          bought: false,
+          bought: items.find((item) => item.id === editingId)?.bought ?? false,
         })
       );
 
       setEditingId(null);
     } else {
+      // Add a new shopping item
       dispatch(
         addItem({
           id: crypto.randomUUID(),
@@ -93,7 +100,6 @@ function ShoppingListPage() {
 
   return (
     <div className="min-h-screen bg-green-50 p-4">
-
       <div className="mx-auto max-w-4xl">
 
         {/* Page heading */}
@@ -109,7 +115,6 @@ function ShoppingListPage() {
 
         {/* Summary */}
         <div className="mb-6 grid grid-cols-3 gap-3">
-
           <div className="rounded-lg bg-white p-4 shadow">
             <p className="text-sm text-gray-500">Total</p>
             <h2 className="text-2xl font-bold text-green-800">
@@ -130,18 +135,15 @@ function ShoppingListPage() {
               {bought}
             </h2>
           </div>
-
         </div>
 
         {/* Shopping form */}
         <div className="mb-6 rounded-lg bg-white p-5 shadow">
-
           <h2 className="mb-4 text-xl font-bold text-green-800">
             {editingId ? "Edit Item" : "Add Item"}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-3">
-
             <div>
               <label className="mb-1 block text-gray-700">
                 Item Name
@@ -157,7 +159,6 @@ function ShoppingListPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-
               <div>
                 <label className="mb-1 block text-gray-700">
                   Quantity
@@ -191,15 +192,14 @@ function ShoppingListPage() {
                   <option value="Other">Other</option>
                 </select>
               </div>
-
             </div>
 
+            {/* Validation error */}
             {error && (
               <p className="text-sm text-red-600">{error}</p>
             )}
 
             <div className="flex gap-2">
-
               <button
                 type="submit"
                 className="rounded-lg bg-green-700 p-3 text-white hover:bg-green-800"
@@ -216,15 +216,12 @@ function ShoppingListPage() {
                   Cancel
                 </button>
               )}
-
             </div>
-
           </form>
         </div>
 
         {/* Shopping items */}
         <div className="rounded-lg bg-white p-5 shadow">
-
           <div className="mb-4 flex justify-between gap-2">
             <h2 className="text-xl font-bold text-green-800">
               Shopping Items
@@ -240,21 +237,19 @@ function ShoppingListPage() {
             )}
           </div>
 
+          {/* Empty state */}
           {items.length === 0 ? (
             <p className="py-6 text-center text-gray-500">
               Your shopping list is empty. Add your first item!
             </p>
           ) : (
             <div className="space-y-3">
-
               {items.map((item) => (
                 <div
                   key={item.id}
                   className="flex items-center justify-between gap-3 rounded-lg border p-3"
                 >
-
                   <div className="flex items-center gap-3">
-
                     <input
                       type="checkbox"
                       checked={item.bought}
@@ -277,11 +272,9 @@ function ShoppingListPage() {
                         Quantity: {item.quantity} | {item.category}
                       </p>
                     </div>
-
                   </div>
 
                   <div className="flex gap-3">
-
                     <button
                       onClick={() => handleEdit(item)}
                       className="text-green-700"
@@ -295,15 +288,11 @@ function ShoppingListPage() {
                     >
                       Delete
                     </button>
-
                   </div>
-
                 </div>
               ))}
-
             </div>
           )}
-
         </div>
 
       </div>
