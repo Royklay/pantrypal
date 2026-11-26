@@ -58,9 +58,11 @@ function App() {
 
           {/* Unknown pages */}
           <Route path="*" element={<NotFoundPage />} />
+
+           <Route path="/my-recipes" element={<MyRecipesPage />} />
         </Routes>
 
-        <Route path="/my-recipes" element={<MyRecipesPage />} />
+        
       </main>
 
       <Footer />
